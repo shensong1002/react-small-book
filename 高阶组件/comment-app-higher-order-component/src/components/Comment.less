@@ -1,0 +1,44 @@
+.comment {
+  display: flex;
+  position: relative;
+  min-height: 50px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f1f1f1;
+  .comment-user {
+    flex-shrink: 100;
+    span {
+      color: #00a3cf;
+      font-style: italic;
+    }
+  }
+  .comment-content {
+    margin: 0;
+    text-indent: 2em;
+    code {
+      padding: 0 2px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      background: #f9f9f9;
+      color: red;
+    }
+  }
+  .comment-time {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    font-size: 12px;
+  }
+  .comment-delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: blue;
+    font-size: 12px;
+    opacity: 0;
+    cursor: pointer;
+  }
+  &:hover .comment-delete {
+    opacity: 1;
+  }
+}

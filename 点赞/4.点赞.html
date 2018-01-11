@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrap"></div>
+
+    <script>
+        // 根据传入的字符串生成DOM元素
+        const createDOMFormString = (string) => {
+            const div = document.createElement('div')
+            div.innerHTML = string
+            return div
+        }
+
+        // 父类
+        class Component {
+            constructor(props = {}) {
+                this.props = props
+            }
+
+            // 更改state，重新指定_renderDOM方法，获取新的el
+            setState(state) {
+                const oldEl = this.el
+                this.state = state
+                this.el = this._renderDOM()
+                if (this.onStateChange) this.onStateChange(oldEl, this.el)
+            }
+
+            // 生成dom并且绑定事件
+            _renderDOM() {
+                this.el = createDOMFormString(this.render())
+                if(this.onClick) {
+                    this.el.addEventListener('click', this.onClick.bind(this), false)
+                }
+                return this.el
+            }
+        }
+
+        // 子类
+        class Button extends Component {
+            constructor(props) {
+                // 调用super父类函数
+                super(props)
+                this.state = {
+                    onOff: false
+                }
+            }
+
+            onClick() {
+                this.setState({
+                    onOff: !this.state.onOff
+                })
+            }
+
+            render() {
+                return `
+                    <button class="btn" style="background-color:${this.props.bgColor};">
+                        <span class="text">${this.state.onOff ? '取消' : '点赞'}</span>
+                    </button> 
+                `
+            }
+        }
+
+        const mount = (component, wrap) => {
+            wrap.appendChild(component._renderDOM())
+            component.onStateChange = (oldEl, newEl) => {
+                wrap.removeChild(oldEl)
+                wrap.appendChild(newEl)
+            }
+        }
+
+        const b = new Button({ bgColor: 'red' })
+        const wrap = document.querySelector('.wrap')
+
+        mount(b, wrap)
+    </script>
+</body>
+
+</html>

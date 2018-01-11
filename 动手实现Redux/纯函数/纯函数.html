@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+    <script>
+        /* 非纯函数 */
+        const a = 1
+        const foo = (b) => a + b
+        console.log(foo(2))
+
+        /* 纯函数 */
+        /* 
+
+            一个函数的返回结果只依赖于它的参数，并且在执行过程里面没有副作用，我们就把这个函数叫做纯函数。
+        
+         */
+        const a1 = 1
+        const fn = (x, b) => x + b 
+        console.log(fn(1, 2))
+    </script>
+</body>
+</html>

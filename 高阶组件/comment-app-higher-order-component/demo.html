@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+    <script>
+        var re = /(`)(.+?)(`)/g
+        
+        var str = '1`1111`23`222`23``'
+
+        // console.log(str)
+
+        var newStr = str.replace(re, function($0, $1, $2, $3, $4, $5) {
+            return `<code>${$2}</code>`
+        })
+
+        console.log(newStr)
+        
+    </script>
+</body>
+</html>

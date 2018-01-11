@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <button class="btn">
+            <span class="text">点赞</span>
+        </button>
+    </div>
+
+    <script>
+        const btn = document.querySelector('.btn')
+        const text = document.querySelector('.text')
+        let onOff = false
+
+        btn.addEventListener('click', function() {
+            onOff = !onOff
+            if(onOff) {
+                text.innerHTML = '取消' 
+            }else {
+                text.innerHTML = '点赞'
+            }
+        }, false)
+    </script>
+</body>
+</html>
